@@ -5,31 +5,28 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        System.out.print("Input : ");
-        System.out.println();
-        int n = s.nextInt();
-        fibonacci(n);
-
+        System.out.println("Input : ");
+        int number = new Scanner(System.in).nextInt();
+        System.out.println("\nOutput \n"
+              + (fibonacciLoop(number) + ""));
     }
 
-    public static void fibonacci(int n) {
-        if (n == 1) {
-            System.out.println("0");
-        } else if (n == 1) {
-            System.out.println("Output : ");
-            System.out.println("1");
-        } else {
-            System.out.println("Output ");
-            System.out.print("1 ");
-            int a = 0;
-            int b = 1;
-            for (int i = 1; i < n; i++) {
-                int nextNumber = a + b;
-                System.out.print(nextNumber + " ");
-                a = b;
-                b = nextNumber;
-            }
+    public static int fibonacciLoop(int number) {
+        // Fib(1) = 1, returns 1
+        // Fib(2) = 2, returns 2 which is the sum of Fib(1) + Fib(1)
+        if (number < 3) {
+            return number;
         }
+
+        int sum = 2; // 2 is the sum till Fib(2)
+        int fibo1 = 1, fibo2 = 1, fibonacci = 1;
+        for (int i = 3; i <= number; i++) {
+            fibonacci = fibo1 + fibo2;
+            sum += fibonacci;
+            fibo1 = fibo2;
+            fibo2 = fibonacci;
+        }
+
+        return sum;
     }
 }
